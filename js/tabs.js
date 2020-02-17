@@ -8,7 +8,6 @@ const htmlElements = {
     buttons: document.querySelectorAll('.container .buttons button'),
 };
 
-
 function Tabs() {};
 
 Tabs.prototype.init = function () {
@@ -26,8 +25,6 @@ Tabs.prototype.init = function () {
 
 }
 
-
-
 function selectLinks() {
     this.classList.add('selected');
     htmlElements.links.forEach(item => {
@@ -40,19 +37,13 @@ function selectLinks() {
 
 function showButtons() {
     htmlElements.buttons.forEach(item => item.classList.remove('hidden'));
-
     clock.stop();
     stopwatch.showTimer();
-
-    // htmlElements.startBtn.addEventListener('click', startTimer);
-
-    // htmlElements.resetBtn.addEventListener('click', resetTimer);
 }
 
 function hideButtons() {
     htmlElements.buttons.forEach(item => item.classList.add('hidden'));
-    // clearInterval(time);
-    // resetTimer();
+    clearInterval(stopwatch.time);
     clock.run();
 }
 

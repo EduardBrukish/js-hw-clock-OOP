@@ -2,10 +2,6 @@ import {
     clock
 } from "./main.js";
 
-// let time;
-// let difference;
-// let currentDifference = 0;
-
 const htmlElements = {
     startBtn: document.querySelector('.container .buttons button.start'),
     stopBtn: document.querySelector('.container .buttons button.stop'),
@@ -23,9 +19,7 @@ Stopwatch.prototype.init = function () {
         once: true
     });
     htmlElements.resetBtn.addEventListener('click', this.resetTimer.bind(this));
-    htmlElements.stopBtn.addEventListener('click', this.stopTimer.bind(this));
 }
-
 
 Stopwatch.prototype.showTimer = function () {
     clearInterval(clock.timerId);
@@ -34,10 +28,9 @@ Stopwatch.prototype.showTimer = function () {
 
 Stopwatch.prototype.startTimer = function () {
     let start = Date.now();
-    // console.log(2)
-    // htmlElements.startBtn.removeEventListener('click', this.startTimer.bind(this));
-    // htmlElements.resetBtn.removeEventListener('click', this.resetTimer);
-    // htmlElements.stopBtn.addEventListener('click', this.stopTimer.bind(this));
+    htmlElements.stopBtn.addEventListener('click', this.stopTimer.bind(this), {
+        once: true
+    });
     this.time = setInterval(this.letStart.bind(this), 100, start);
     console.log(this.time)
 }
@@ -62,20 +55,14 @@ Stopwatch.prototype.letStart = function (start) {
 }
 
 Stopwatch.prototype.stopTimer = function () {
-    // console.log(1)
-    console.log(this.time)
     clearInterval(this.time);
     htmlElements.startBtn.addEventListener('click', this.startTimer.bind(this), {
         once: true
     });
-    // htmlElements.startBtn.addEventListener('click', this.startTimer.bind(this));
-    // htmlElements.resetBtn.addEventListener('click', this.resetTimer.bind(this));
-    // this.currentDifference = this.difference;
+    this.currentDifference = this.difference;
 }
 
 Stopwatch.prototype.resetTimer = function () {
-    console.log(this)
-    // htmlElements.stopBtn.removeEventListener('click', this.stopTimer.bind(this));
     this.currentDifference = 0;
     htmlElements.output.innerText = '00:00:00.0';
 }
