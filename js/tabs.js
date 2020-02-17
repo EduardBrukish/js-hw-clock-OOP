@@ -1,3 +1,8 @@
+import {
+    clock,
+    stopwatch
+} from "./main.js";
+
 const htmlElements = {
     links: document.querySelectorAll('.container .links a'),
     buttons: document.querySelectorAll('.container .buttons button'),
@@ -36,7 +41,8 @@ function selectLinks() {
 function showButtons() {
     htmlElements.buttons.forEach(item => item.classList.remove('hidden'));
 
-    // showTimer();
+    clock.stop();
+    stopwatch.showTimer();
 
     // htmlElements.startBtn.addEventListener('click', startTimer);
 
@@ -47,7 +53,7 @@ function hideButtons() {
     htmlElements.buttons.forEach(item => item.classList.add('hidden'));
     // clearInterval(time);
     // resetTimer();
-    // clock.run();
+    clock.run();
 }
 
 export {
