@@ -2,9 +2,9 @@ import {
     clock
 } from "./main.js";
 
-let time;
-let difference;
-let currentDifference = 0;
+// let time;
+// let difference;
+// let currentDifference = 0;
 
 const htmlElements = {
     startBtn: document.querySelector('.container .buttons button.start'),
@@ -14,13 +14,16 @@ const htmlElements = {
 };
 
 function Stopwatch() {
-
+    this.difference = 0;
+    this.currentDifference = 0;
 }
 
 Stopwatch.prototype.init = function () {
-    htmlElements.startBtn.addEventListener('click', startTimer);
-    htmlElements.resetBtn.addEventListener('click', resetTimer);
-    htmlElements.stopBtn.addEventListener('click', stopTimer);
+    htmlElements.startBtn.addEventListener('click', this.startTimer.bind(this), {
+        once: true
+    });
+    htmlElements.resetBtn.addEventListener('click', this.resetTimer.bind(this));
+    htmlElements.stopBtn.addEventListener('click', this.stopTimer.bind(this));
 }
 
 
@@ -29,44 +32,52 @@ Stopwatch.prototype.showTimer = function () {
     htmlElements.output.innerText = '00:00:00.0';
 }
 
-function startTimer() {
+Stopwatch.prototype.startTimer = function () {
     let start = Date.now();
-    htmlElements.startBtn.removeEventListener('click', startTimer);
-    htmlElements.resetBtn.removeEventListener('click', resetTimer);
-    htmlElements.stopBtn.addEventListener('click', stopTimer);
-    time = setInterval(letStart, 100, start);
+    // console.log(2)
+    // htmlElements.startBtn.removeEventListener('click', this.startTimer.bind(this));
+    // htmlElements.resetBtn.removeEventListener('click', this.resetTimer);
+    // htmlElements.stopBtn.addEventListener('click', this.stopTimer.bind(this));
+    this.time = setInterval(this.letStart.bind(this), 100, start);
+    console.log(this.time)
 }
 
-function letStart(start) {
+Stopwatch.prototype.letStart = function (start) {
     let end = Date.now();
-    difference = end - start + currentDifference;
-    let miliseconds = parseInt((difference % 1000) / 100);
-    let seconds = parseInt((difference / 1000) % 60);
+    this.difference = end - start + this.currentDifference;
+    let miliseconds = parseInt((this.difference % 1000) / 100);
+    let seconds = parseInt((this.difference / 1000) % 60);
     if (seconds < 10) {
         seconds = '0' + seconds
     };
-    let minutes = parseInt(((difference / 1000) / 60) % 60);
+    let minutes = parseInt(((this.difference / 1000) / 60) % 60);
     if (minutes < 10) {
         minutes = '0' + minutes
     };
-    let hours = parseInt(((difference / 1000) / 3600) % 60);
+    let hours = parseInt(((this.difference / 1000) / 3600) % 60);
     if (hours < 10) {
         hours = '0' + hours
     };
     htmlElements.output.innerText = `${hours}:${minutes}:${seconds}.${miliseconds}`;
 }
 
-function stopTimer() {
-    clearInterval(time);
-    htmlElements.startBtn.addEventListener('click', startTimer);
-    htmlElements.resetBtn.addEventListener('click', resetTimer);
-    currentDifference = difference;
+Stopwatch.prototype.stopTimer = function () {
+    // console.log(1)
+    console.log(this.time)
+    clearInterval(this.time);
+    htmlElements.startBtn.addEventListener('click', this.startTimer.bind(this), {
+        once: true
+    });
+    // htmlElements.startBtn.addEventListener('click', this.startTimer.bind(this));
+    // htmlElements.resetBtn.addEventListener('click', this.resetTimer.bind(this));
+    // this.currentDifference = this.difference;
 }
 
-function resetTimer() {
-    htmlElements.stopBtn.removeEventListener('click', stopTimer);
-    currentDifference = 0;
-    showTimer();
+Stopwatch.prototype.resetTimer = function () {
+    console.log(this)
+    // htmlElements.stopBtn.removeEventListener('click', this.stopTimer.bind(this));
+    this.currentDifference = 0;
+    htmlElements.output.innerText = '00:00:00.0';
 }
 
 export {

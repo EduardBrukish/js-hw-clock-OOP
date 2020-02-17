@@ -41,6 +41,7 @@ let stopwatch = new Stopwatch();
 clock.run();
 tabs.init();
 stopwatch.init();
+console.log(stopwatch)
 
 // function showButtons() {
 //     buttons.forEach(item => item.classList.remove('hidden'));
