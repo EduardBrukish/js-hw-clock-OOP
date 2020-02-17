@@ -32,7 +32,6 @@ Stopwatch.prototype.startTimer = function () {
         once: true
     });
     this.time = setInterval(this.letStart.bind(this), 100, start);
-    console.log(this.time)
 }
 
 Stopwatch.prototype.letStart = function (start) {
