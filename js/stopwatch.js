@@ -1,6 +1,4 @@
-import {
-    clock
-} from "./main.js";
+import { clock } from "./main.js";
 
 const htmlElements = {
     startBtn: document.querySelector('.container .buttons button.start'),
@@ -66,6 +64,4 @@ Stopwatch.prototype.resetTimer = function () {
     htmlElements.output.innerText = '00:00:00.0';
 }
 
-export {
-    Stopwatch
-}
+export { Stopwatch }

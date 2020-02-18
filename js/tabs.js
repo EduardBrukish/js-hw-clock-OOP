@@ -1,19 +1,13 @@
-import {
-    clock,
-    stopwatch
-} from "./main.js";
+import { clock, stopwatch } from "./main.js";
 
-import {
-    addClass,
-    removeClass
-} from './helper.js'
+import { addClass, removeClass } from './helper.js'
 
 const htmlElements = {
     links: document.querySelectorAll('.container .links a'),
     buttons: document.querySelectorAll('.container .buttons button'),
 };
 
-function Tabs() {};
+function Tabs() { };
 
 Tabs.prototype.init = function () {
     htmlElements.links.forEach(item => {
@@ -52,6 +46,4 @@ function hideButtons() {
     clock.run();
 }
 
-export {
-    Tabs
-};
+export { Tabs };

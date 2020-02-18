@@ -1,16 +1,10 @@
 'use strict'
 
-import {
-    Clock
-} from './clock.js';
+import { Clock } from './clock.js';
 
-import {
-    Tabs
-} from './tabs.js';
+import { Tabs } from './tabs.js';
 
-import {
-    Stopwatch
-} from './stopwatch.js';
+import { Stopwatch } from './stopwatch.js';
 
 let clock = new Clock();
 let tabs = new Tabs();
@@ -20,7 +14,4 @@ clock.run();
 tabs.init();
 stopwatch.init();
 
-export {
-    clock,
-    stopwatch
-}
+export { clock, stopwatch }

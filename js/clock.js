@@ -2,7 +2,7 @@ const htmlElements = {
     output: document.querySelector('.container .output')
 };
 
-function Clock() {}
+function Clock() { }
 
 Clock.prototype.run = function () {
     this.timerId = setInterval(this.onIntervalNextTick.bind(this), 1000);
@@ -18,6 +18,4 @@ Clock.prototype.onIntervalNextTick = function () {
     htmlElements.output.innerText = this.outputTime;
 }
 
-export {
-    Clock
-}
+export { Clock }

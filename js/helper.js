@@ -6,7 +6,4 @@ function removeClass(item) {
     item.classList.remove('hidden');
 }
 
-export {
-    addClass,
-    removeClass
-}
+export { addClass, removeClass }
